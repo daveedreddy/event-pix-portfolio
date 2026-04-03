@@ -61,6 +61,7 @@ export type Database = {
           event_date: string | null
           id: string
           image_url: string | null
+          service_id: string | null
           title: string
           updated_at: string
         }
@@ -71,6 +72,7 @@ export type Database = {
           event_date?: string | null
           id?: string
           image_url?: string | null
+          service_id?: string | null
           title: string
           updated_at?: string
         }
@@ -81,8 +83,112 @@ export type Database = {
           event_date?: string | null
           id?: string
           image_url?: string | null
+          service_id?: string | null
           title?: string
           updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "projects_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      service_packages: {
+        Row: {
+          created_at: string
+          display_order: number
+          features: string[]
+          id: string
+          name: string
+          price: string
+          service_id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_order?: number
+          features?: string[]
+          id?: string
+          name: string
+          price: string
+          service_id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_order?: number
+          features?: string[]
+          id?: string
+          name?: string
+          price?: string
+          service_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "service_packages_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      services: {
+        Row: {
+          created_at: string
+          description: string
+          display_order: number
+          icon: string
+          id: string
+          is_active: boolean
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          description: string
+          display_order?: number
+          icon?: string
+          id?: string
+          is_active?: boolean
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string
+          display_order?: number
+          icon?: string
+          id?: string
+          is_active?: boolean
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          id: string
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          id?: string
+          key: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          id?: string
+          key?: string
+          updated_at?: string
+          value?: string
         }
         Relationships: []
       }
