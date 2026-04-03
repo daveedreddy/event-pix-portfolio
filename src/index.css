@@ -187,3 +187,57 @@
 ::-webkit-scrollbar-track { background: hsl(0 0% 5%); }
 ::-webkit-scrollbar-thumb { background: hsl(var(--gold) / 0.3); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: hsl(var(--gold) / 0.5); }
+
+/* Custom cursor */
+@media (min-width: 1024px) {
+  * { cursor: none !important; }
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: hsl(var(--gold));
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: transform 0.15s ease-out, opacity 0.3s;
+  mix-blend-mode: difference;
+}
+
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid hsl(var(--gold) / 0.4);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.25s ease-out, border-color 0.3s, opacity 0.3s;
+}
+
+/* Magnetic text reveal */
+@keyframes textReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+
+.text-reveal {
+  animation: textReveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+/* Parallax shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-gold {
+  background: linear-gradient(90deg, transparent, hsl(var(--gold) / 0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
