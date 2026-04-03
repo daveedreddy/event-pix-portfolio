@@ -10,7 +10,8 @@ type Service = Tables<"services">;
 type ServicePackage = Tables<"service_packages">;
 
 const DynamicIcon = ({ name, className }: { name: string; className?: string }) => {
-  const Icon = (LucideIcons as Record<string, React.ComponentType<{ className?: string }>>)[name] || LucideIcons.Camera;
+  const icons = LucideIcons as unknown as Record<string, React.ComponentType<{ className?: string }>>;
+  const Icon = icons[name] || LucideIcons.Camera;
   return <Icon className={className} />;
 };
 
