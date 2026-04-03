@@ -1,4 +1,5 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useSiteSettings } from "@/hooks/useSiteSettings";
 import { Camera, Award, Users } from "lucide-react";
 
 const stats = [
@@ -9,6 +10,11 @@ const stats = [
 
 const AboutSection = () => {
   const { ref, isVisible } = useScrollAnimation();
+  const { data: settings } = useSiteSettings();
+
+  const photographerName = settings?.photographer_name || "G.Mohan";
+  const aboutDesc = settings?.about_description || "I'm the founder of Creative Photography, a passionate photographer dedicated to capturing life's most precious moments. With over 8 years of experience in wedding and event photography, I bring a unique blend of artistic vision and technical expertise to every shoot.";
+  const aboutDesc2 = settings?.about_description_2 || "From the joyful tears at a wedding ceremony to the laughter at a birthday party, I believe every event deserves to be documented beautifully. My goal is to create timeless photographs that you'll treasure for generations.";
 
   return (
     <section id="about" className="py-24 px-6 md:px-12 bg-background">
@@ -18,20 +24,19 @@ const AboutSection = () => {
             <p className="font-sans text-sm tracking-[0.3em] uppercase text-gold mb-4">
               About The Photographer
             </p>
-            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6 text-foreground">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold mb-2 text-foreground">
+              {photographerName}
+            </h2>
+            <p className="font-serif text-lg text-gold mb-6 italic">Founder, Creative Photography</p>
+            <h3 className="font-serif text-2xl md:text-3xl font-bold mb-6 text-foreground">
               Every Frame Tells <br />
               <span className="text-gradient-gold">A Story</span>
-            </h2>
+            </h3>
             <p className="font-sans text-foreground/60 leading-relaxed mb-6">
-              I'm the founder of Creative Photography, a passionate photographer dedicated to
-              capturing life's most precious moments. With over 8 years of experience in wedding
-              and event photography, I bring a unique blend of artistic vision and technical expertise
-              to every shoot.
+              {aboutDesc}
             </p>
             <p className="font-sans text-foreground/60 leading-relaxed">
-              From the joyful tears at a wedding ceremony to the laughter at a birthday party,
-              I believe every event deserves to be documented beautifully. My goal is to create
-              timeless photographs that you'll treasure for generations.
+              {aboutDesc2}
             </p>
           </div>
 
